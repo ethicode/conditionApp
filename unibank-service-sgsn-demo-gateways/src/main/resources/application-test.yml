@@ -1,0 +1,15 @@
+spring:
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+unibank.components.db.entities:
+  CI: h2://sa@file/../build/db/unibank?schema=CI
+  CM: h2://sa@file/../build/db/unibank?schema=CM
+  GH: h2://sa@file/../build/db/unibank?schema=GH
+  GN: h2://sa@file/../build/db/unibank?schema=GN
+  SN: h2://sa@file/../build/db/unibank?schema=SN
+
+unibank.service.security:
+  jwk-location: /security/unibank-ht-jwk-pub.json
+server.port: 8081

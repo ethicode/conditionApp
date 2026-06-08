@@ -1,0 +1,22 @@
+spring.application.name: unibank-service-unibank-service-sgsn-demo
+
+spring.cloud.vault:
+  session.lifecycle:
+    enabled: false
+  config.lifecycle:
+    enabled: false
+  authentication: ${VAULT_AUTH:TOKEN}
+  enabled: ${VAULT_ENABLED:false}
+  fail-fast: true
+
+# application-name: ${spring.application.name}
+  kv:
+    enabled: ${VAULT_ENABLED:false}
+    default-context: ${VAULT_CONTEXT:unibank-service}
+  uri: ${VAULT_URI:http://localhost:8200}
+  connection-timeout: 5000
+  read-timeout: 15000
+  namespace: ${VAULT_NAMESPACE:}
+  app-role:
+    role-id: ${VAULT_ROLE_ID:0000000000000000000000}
+    secret-id: ${VAULT_SECRET_ID:0000000000000000000000}

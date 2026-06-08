@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-derogatory-condition-attachment
+      author: copilot
+      changes:
+        - createTable:
+            tableName: derogatory_condition_request_attachment
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: request_id
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: file_name
+                  type: varchar(255)
+              - column:
+                  name: uploaded_by
+                  type: varchar(128)
+              - column:
+                  name: uploaded_at
+                  type: datetime

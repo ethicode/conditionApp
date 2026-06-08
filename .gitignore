@@ -1,0 +1,60 @@
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Compiled class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual Machine
+hs_err_pid*
+
+# Sensitive/local configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+id_rsa
+id_rsa.pub
+
+# Local build credentials
+gradle-local.properties
+local.properties
+
+# Local runtime configs that may contain secrets
+**/application-local.yml
+**/application-local.yaml
+**/application-localdev.yml
+**/application-localdev.yaml

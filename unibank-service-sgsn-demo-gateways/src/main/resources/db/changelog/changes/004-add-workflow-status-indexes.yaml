@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-add-workflow-status-indexes
+      author: copilot
+      changes:
+        - createIndex:
+            tableName: derogatory_condition_request
+            indexName: idx_derogatory_condition_request_status
+            columns:
+              - column:
+                  name: status
+        - createIndex:
+            tableName: derogatory_condition_request
+            indexName: idx_derogatory_condition_request_actor
+            columns:
+              - column:
+                  name: current_actor
+        - createIndex:
+            tableName: derogatory_condition_request
+            indexName: idx_derogatory_condition_request_customer_ref
+            columns:
+              - column:
+                  name: customer_reference

@@ -1,0 +1,134 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-seed-reference-workflow-statuses
+      author: copilot
+      changes:
+        - createTable:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  type: varchar(64)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: status_label
+                  type: varchar(128)
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: NEW_REQUEST
+              - column:
+                  name: status_label
+                  value: Nouvelle demande
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: WAITING_FOR_CORRECTION
+              - column:
+                  name: status_label
+                  value: En attente correction
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: WAITING_RM_VALIDATION
+              - column:
+                  name: status_label
+                  value: En attente validation RM
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: WAITING_DCE_VALIDATION
+              - column:
+                  name: status_label
+                  value: En attente validation DCE
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: DECLARED
+              - column:
+                  name: status_label
+                  value: Declare
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: WAITING_FOR_INFORMATION
+              - column:
+                  name: status_label
+                  value: En attente d information
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: WAITING_SIOP_VALIDATION
+              - column:
+                  name: status_label
+                  value: En attente de validation SIOP
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: IN_VALIDATION
+              - column:
+                  name: status_label
+                  value: En cours de validation
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: VALIDATED
+              - column:
+                  name: status_label
+                  value: Valide
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: RESOLVED
+              - column:
+                  name: status_label
+                  value: Resolu
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: CLOSED
+              - column:
+                  name: status_label
+                  value: Cloture
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: IN_PROGRESS
+              - column:
+                  name: status_label
+                  value: En cours
+        - insert:
+            tableName: derogatory_condition_status_reference
+            columns:
+              - column:
+                  name: status_code
+                  value: APPROVED
+              - column:
+                  name: status_label
+                  value: Approuve

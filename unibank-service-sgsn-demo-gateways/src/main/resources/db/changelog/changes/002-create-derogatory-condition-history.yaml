@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-derogatory-condition-history
+      author: copilot
+      changes:
+        - createTable:
+            tableName: derogatory_condition_request_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: request_id
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: event_at
+                  type: datetime
+              - column:
+                  name: actor
+                  type: varchar(128)
+              - column:
+                  name: status
+                  type: varchar(64)
+              - column:
+                  name: comment
+                  type: varchar(2000)
