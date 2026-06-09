@@ -4,7 +4,7 @@ databaseChangeLog:
       author: copilot
       changes:
         - createTable:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -16,7 +16,7 @@ databaseChangeLog:
                   name: status_label
                   type: varchar(128)
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -25,7 +25,7 @@ databaseChangeLog:
                   name: status_label
                   value: Nouvelle demande
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -34,7 +34,7 @@ databaseChangeLog:
                   name: status_label
                   value: En attente correction
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -43,7 +43,7 @@ databaseChangeLog:
                   name: status_label
                   value: En attente validation RM
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -52,7 +52,7 @@ databaseChangeLog:
                   name: status_label
                   value: En attente validation DCE
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -61,7 +61,7 @@ databaseChangeLog:
                   name: status_label
                   value: Declare
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -70,7 +70,7 @@ databaseChangeLog:
                   name: status_label
                   value: En attente d information
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -79,7 +79,7 @@ databaseChangeLog:
                   name: status_label
                   value: En attente de validation SIOP
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -88,7 +88,7 @@ databaseChangeLog:
                   name: status_label
                   value: En cours de validation
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -97,7 +97,7 @@ databaseChangeLog:
                   name: status_label
                   value: Valide
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -106,7 +106,7 @@ databaseChangeLog:
                   name: status_label
                   value: Resolu
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -115,7 +115,7 @@ databaseChangeLog:
                   name: status_label
                   value: Cloture
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code
@@ -124,7 +124,7 @@ databaseChangeLog:
                   name: status_label
                   value: En cours
         - insert:
-            tableName: derogatory_condition_status_reference
+            tableName: demande_status_reference
             columns:
               - column:
                   name: status_code

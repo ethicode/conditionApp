@@ -4,20 +4,20 @@ databaseChangeLog:
       author: copilot
       changes:
         - createIndex:
-            tableName: derogatory_condition_request
-            indexName: idx_derogatory_condition_request_status
+            tableName: demande_request
+            indexName: idx_demande_request_status
             columns:
               - column:
                   name: status
         - createIndex:
-            tableName: derogatory_condition_request
-            indexName: idx_derogatory_condition_request_actor
+            tableName: demande_request
+            indexName: idx_demande_request_actor
             columns:
               - column:
                   name: current_actor
         - createIndex:
-            tableName: derogatory_condition_request
-            indexName: idx_derogatory_condition_request_customer_ref
+            tableName: demande_request
+            indexName: idx_demande_request_customer_ref
             columns:
               - column:
                   name: customer_reference

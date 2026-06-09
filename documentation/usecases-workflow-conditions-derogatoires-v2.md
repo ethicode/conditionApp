@@ -32,25 +32,25 @@ Les noms ci-dessous sont proposes pour couvrir proprement les use cases du workf
 Role du module: definir les contrats fonctionnels, les DTO et les interfaces des use cases.
 
 Fichiers a creer:
-- `src/main/java/com/socgen/unibank/services/api/usecases/CreateDerogatoryConditionRequestUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/UpdateDerogatoryConditionRequestUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/ValidateDerogatoryConditionRequestUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/ReturnDerogatoryConditionRequestUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/AssignDerogatoryConditionRequestUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/CloseDerogatoryConditionRequestUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/SearchDerogatoryConditionRequestsUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/ExportDerogatoryConditionRequestsUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/usecases/GetDerogatoryConditionDashboardUseCase.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestCreateRequest.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestUpdateRequest.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestValidationRequest.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestReturnRequest.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestAssignmentRequest.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestCloseRequest.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestResponse.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestSearchCriteria.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionRequestSearchResponse.java`
-- `src/main/java/com/socgen/unibank/services/api/model/DerogatoryConditionDashboardResponse.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/CreateDemandeRequestUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/UpdateDemandeRequestUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/ValidateDemandeRequestUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/ReturnDemandeRequestUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/AssignDemandeRequestUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/CloseDemandeRequestUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/SearchDemandeRequestsUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/ExportDemandeRequestsUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/usecases/GetDemandeDashboardUseCase.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestCreateRequest.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestUpdateRequest.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestValidationRequest.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestReturnRequest.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestAssignmentRequest.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestCloseRequest.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestResponse.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestSearchCriteria.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeRequestSearchResponse.java`
+- `src/main/java/com/socgen/unibank/services/api/model/DemandeDashboardResponse.java`
 
 Fonction de ces fichiers:
 - les `usecases` declarent les operations metier disponibles;
@@ -62,23 +62,23 @@ Fonction de ces fichiers:
 Role du module: porter la logique metier du workflow, les transitions d etat, les regles de SLA et les ports vers les services externes.
 
 Fichiers a creer:
-- `src/main/java/com/socgen/unibank/services/core/usecases/CreateDerogatoryConditionRequestImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/UpdateDerogatoryConditionRequestImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/ValidateDerogatoryConditionRequestImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/ReturnDerogatoryConditionRequestImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/AssignDerogatoryConditionRequestImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/CloseDerogatoryConditionRequestImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/SearchDerogatoryConditionRequestsImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/ExportDerogatoryConditionRequestsImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/usecases/GetDerogatoryConditionDashboardImpl.java`
-- `src/main/java/com/socgen/unibank/services/core/model/DerogatoryConditionRequest.java`
-- `src/main/java/com/socgen/unibank/services/core/model/DerogatoryConditionRequestStatus.java`
-- `src/main/java/com/socgen/unibank/services/core/model/DerogatoryConditionRequestTransition.java`
-- `src/main/java/com/socgen/unibank/services/core/model/DerogatoryConditionSla.java`
-- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DerogatoryConditionRequestRepositoryGateway.java`
-- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DerogatoryConditionNotificationGateway.java`
-- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DerogatoryConditionExportGateway.java`
-- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DerogatoryConditionKnowledgeBaseGateway.java` (lot 2 si active)
+- `src/main/java/com/socgen/unibank/services/core/usecases/CreateDemandeRequestImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/UpdateDemandeRequestImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/ValidateDemandeRequestImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/ReturnDemandeRequestImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/AssignDemandeRequestImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/CloseDemandeRequestImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/SearchDemandeRequestsImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/ExportDemandeRequestsImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/usecases/GetDemandeDashboardImpl.java`
+- `src/main/java/com/socgen/unibank/services/core/model/DemandeRequest.java`
+- `src/main/java/com/socgen/unibank/services/core/model/DemandeRequestStatus.java`
+- `src/main/java/com/socgen/unibank/services/core/model/DemandeRequestTransition.java`
+- `src/main/java/com/socgen/unibank/services/core/model/DemandeSla.java`
+- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DemandeRequestRepositoryGateway.java`
+- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DemandeNotificationGateway.java`
+- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DemandeExportGateway.java`
+- `src/main/java/com/socgen/unibank/services/core/gateways/outbound/DemandeKnowledgeBaseGateway.java` (lot 2 si active)
 
 Fonction de ces fichiers:
 - les `Impl` portent les scenarios du workflow;
@@ -90,26 +90,26 @@ Fonction de ces fichiers:
 Role du module: exposer les APIs, brancher les composants Spring, implementer la persistence, la notification, l export et les integrations techniques.
 
 Fichiers a creer:
-- `src/main/java/com/socgen/unibank/services/gateway/inbound/DerogatoryConditionRequestController.java`
-- `src/main/java/com/socgen/unibank/services/gateway/inbound/DerogatoryConditionDashboardController.java`
-- `src/main/java/com/socgen/unibank/services/gateway/inbound/DerogatoryConditionReferenceDataController.java` (si besoin)
-- `src/main/java/com/socgen/unibank/services/gateway/DerogatoryConditionGatewayBeansFactory.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/DerogatoryConditionRequestRepositoryGatewayImpl.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/entities/DerogatoryConditionRequestEntity.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/entities/DerogatoryConditionRequestAttachmentEntity.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/entities/DerogatoryConditionRequestHistoryEntity.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/repositories/DerogatoryConditionRequestJpaRepository.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/repositories/DerogatoryConditionRequestAttachmentJpaRepository.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/DerogatoryConditionNotificationGatewayImpl.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/DerogatoryConditionExportGatewayImpl.java`
-- `src/main/java/com/socgen/unibank/services/gateway/outbound/DerogatoryConditionKnowledgeBaseGatewayImpl.java` (lot 2 si active)
+- `src/main/java/com/socgen/unibank/services/gateway/inbound/DemandeRequestController.java`
+- `src/main/java/com/socgen/unibank/services/gateway/inbound/DemandeDashboardController.java`
+- `src/main/java/com/socgen/unibank/services/gateway/inbound/DemandeReferenceDataController.java` (si besoin)
+- `src/main/java/com/socgen/unibank/services/gateway/DemandeGatewayBeansFactory.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/DemandeRequestRepositoryGatewayImpl.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/entities/DemandeRequestEntity.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/entities/DemandeRequestAttachmentEntity.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/entities/DemandeRequestHistoryEntity.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/repositories/DemandeRequestJpaRepository.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/repositories/DemandeRequestAttachmentJpaRepository.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/DemandeNotificationGatewayImpl.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/DemandeExportGatewayImpl.java`
+- `src/main/java/com/socgen/unibank/services/gateway/outbound/DemandeKnowledgeBaseGatewayImpl.java` (lot 2 si active)
 
 Ressources techniques a prevoir dans ce module:
 - `src/main/resources/application-database-migration.yml`
 - `src/main/resources/db/changelog/db.changelog-master.yaml`
-- `src/main/resources/db/changelog/changes/001-create-derogatory-condition-request.yaml`
-- `src/main/resources/db/changelog/changes/002-create-derogatory-condition-history.yaml`
-- `src/main/resources/db/changelog/changes/003-create-derogatory-condition-attachment.yaml`
+- `src/main/resources/db/changelog/changes/001-create-demande-request.yaml`
+- `src/main/resources/db/changelog/changes/002-create-demande-history.yaml`
+- `src/main/resources/db/changelog/changes/003-create-demande-attachment.yaml`
 - `src/main/resources/db/changelog/changes/004-add-workflow-status-indexes.yaml`
 - `src/main/resources/db/changelog/changes/005-seed-reference-workflow-statuses.yaml` (si necessaire)
 

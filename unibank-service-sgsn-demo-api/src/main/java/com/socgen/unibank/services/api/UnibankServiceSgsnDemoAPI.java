@@ -1,32 +1,37 @@
 package com.socgen.unibank.services.api;
 
 import com.socgen.unibank.platform.models.RequestContext;
-import com.socgen.unibank.services.api.model.DerogatoryConditionDashboardResponse;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestAssignmentRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestCloseRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestCreateRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestResponse;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestReturnRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestSearchCriteria;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestSearchResponse;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestUpdateRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestValidationRequest;
+import com.socgen.unibank.services.api.model.DemandeCommentCreateRequest;
+import com.socgen.unibank.services.api.model.DemandeCommentResponse;
+import com.socgen.unibank.services.api.model.DemandeDashboardResponse;
+import com.socgen.unibank.services.api.model.DemandeRequestAssignmentRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestCloseRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestCreateRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestResponse;
+import com.socgen.unibank.services.api.model.DemandeRequestReturnRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestSearchCriteria;
+import com.socgen.unibank.services.api.model.DemandeRequestSearchResponse;
+import com.socgen.unibank.services.api.model.DemandeRequestUpdateRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestValidationRequest;
 import com.socgen.unibank.services.api.model.SgabsHelloWorldRequest;
 import com.socgen.unibank.services.api.model.SgabsHelloWorldResponse;
-import com.socgen.unibank.services.api.usecases.AssignDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.CloseDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.CreateDerogatoryConditionRequestUseCase;
+import com.socgen.unibank.services.api.usecases.AssignDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.AddDemandeCommentUseCase;
+import com.socgen.unibank.services.api.usecases.CloseDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.CreateDemandeRequestUseCase;
 import com.socgen.unibank.services.api.usecases.CreateSgabsHelloWorld;
-import com.socgen.unibank.services.api.usecases.ExportDerogatoryConditionRequestsUseCase;
-import com.socgen.unibank.services.api.usecases.GetDerogatoryConditionDashboardUseCase;
-import com.socgen.unibank.services.api.usecases.ReturnDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.SearchDerogatoryConditionRequestsUseCase;
-import com.socgen.unibank.services.api.usecases.UpdateDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.ValidateDerogatoryConditionRequestUseCase;
+import com.socgen.unibank.services.api.usecases.ExportDemandeRequestsUseCase;
+import com.socgen.unibank.services.api.usecases.GetDemandeDashboardUseCase;
+import com.socgen.unibank.services.api.usecases.ListDemandeCommentsUseCase;
+import com.socgen.unibank.services.api.usecases.ReturnDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.SearchDemandeRequestsUseCase;
+import com.socgen.unibank.services.api.usecases.UpdateDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.ValidateDemandeRequestUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Hello world")
@@ -34,15 +39,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(name = "sgabs", produces = "application/json")
 public interface UnibankServiceSgsnDemoAPI extends
     CreateSgabsHelloWorld,
-    CreateDerogatoryConditionRequestUseCase,
-    UpdateDerogatoryConditionRequestUseCase,
-    ValidateDerogatoryConditionRequestUseCase,
-    ReturnDerogatoryConditionRequestUseCase,
-    AssignDerogatoryConditionRequestUseCase,
-    CloseDerogatoryConditionRequestUseCase,
-    SearchDerogatoryConditionRequestsUseCase,
-    ExportDerogatoryConditionRequestsUseCase,
-    GetDerogatoryConditionDashboardUseCase {
+    CreateDemandeRequestUseCase,
+    UpdateDemandeRequestUseCase,
+    ValidateDemandeRequestUseCase,
+    ReturnDemandeRequestUseCase,
+    AssignDemandeRequestUseCase,
+    CloseDemandeRequestUseCase,
+    AddDemandeCommentUseCase,
+    ListDemandeCommentsUseCase,
+    SearchDemandeRequestsUseCase,
+    ExportDemandeRequestsUseCase,
+    GetDemandeDashboardUseCase {
 
     @Operation(
         summary = "Create a new SgabsHelloWorld",
@@ -54,39 +61,47 @@ public interface UnibankServiceSgsnDemoAPI extends
     @Override
     SgabsHelloWorldResponse handle(@RequestBody SgabsHelloWorldRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions")
+    @PostMapping("/demandes")
     @Override
-    DerogatoryConditionRequestResponse handle(@RequestBody DerogatoryConditionRequestCreateRequest input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestResponse handle(@RequestBody DemandeRequestCreateRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PutMapping("/derogatory-conditions")
+    @PutMapping("/demandes")
     @Override
-    DerogatoryConditionRequestResponse handle(@RequestBody DerogatoryConditionRequestUpdateRequest input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestResponse handle(@RequestBody DemandeRequestUpdateRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions/validate")
+    @PostMapping("/demandes/validate")
     @Override
-    DerogatoryConditionRequestResponse handle(@RequestBody DerogatoryConditionRequestValidationRequest input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestResponse handle(@RequestBody DemandeRequestValidationRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions/return")
+    @PostMapping("/demandes/return")
     @Override
-    DerogatoryConditionRequestResponse handle(@RequestBody DerogatoryConditionRequestReturnRequest input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestResponse handle(@RequestBody DemandeRequestReturnRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions/assign")
+    @PostMapping("/demandes/assign")
     @Override
-    DerogatoryConditionRequestResponse handle(@RequestBody DerogatoryConditionRequestAssignmentRequest input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestResponse handle(@RequestBody DemandeRequestAssignmentRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions/close")
+    @PostMapping("/demandes/close")
     @Override
-    DerogatoryConditionRequestResponse handle(@RequestBody DerogatoryConditionRequestCloseRequest input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestResponse handle(@RequestBody DemandeRequestCloseRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions/search")
+    @PostMapping("/demandes/{requestId}/comments")
     @Override
-    DerogatoryConditionRequestSearchResponse handle(@RequestBody DerogatoryConditionRequestSearchCriteria input, @Parameter(hidden = true) RequestContext ctx);
+    DemandeCommentResponse handle(@PathVariable("requestId") String requestId, @RequestBody DemandeCommentCreateRequest input, @Parameter(hidden = true) RequestContext ctx);
 
-    @PostMapping("/derogatory-conditions/export")
+    @GetMapping("/demandes/{requestId}/comments")
     @Override
-    String export(@RequestBody DerogatoryConditionRequestSearchCriteria input, @Parameter(hidden = true) RequestContext ctx);
+    List<DemandeCommentResponse> handle(@PathVariable("requestId") String requestId, @Parameter(hidden = true) RequestContext ctx);
 
-    @GetMapping("/derogatory-conditions/dashboard")
+    @PostMapping("/demandes/search")
     @Override
-    DerogatoryConditionDashboardResponse handle(@Parameter(hidden = true) RequestContext ctx);
+    DemandeRequestSearchResponse handle(@RequestBody DemandeRequestSearchCriteria input, @Parameter(hidden = true) RequestContext ctx);
+
+    @PostMapping("/demandes/export")
+    @Override
+    String export(@RequestBody DemandeRequestSearchCriteria input, @Parameter(hidden = true) RequestContext ctx);
+
+    @GetMapping("/demandes/dashboard")
+    @Override
+    DemandeDashboardResponse handle(@Parameter(hidden = true) RequestContext ctx);
 }

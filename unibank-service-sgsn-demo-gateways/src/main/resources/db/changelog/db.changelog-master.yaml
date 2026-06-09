@@ -1,11 +1,13 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/changes/001-create-derogatory-condition-request.yaml
+      file: db/changelog/changes/001-create-demande-request.yaml
   - include:
-      file: db/changelog/changes/002-create-derogatory-condition-history.yaml
+      file: db/changelog/changes/002-create-demande-history.yaml
   - include:
-      file: db/changelog/changes/003-create-derogatory-condition-attachment.yaml
+      file: db/changelog/changes/003-create-demande-attachment.yaml
   - include:
       file: db/changelog/changes/004-add-workflow-status-indexes.yaml
   - include:
       file: db/changelog/changes/005-seed-reference-workflow-statuses.yaml
+  - include:
+      file: db/changelog/changes/006-add-workflow-step-to-demande-history.yaml

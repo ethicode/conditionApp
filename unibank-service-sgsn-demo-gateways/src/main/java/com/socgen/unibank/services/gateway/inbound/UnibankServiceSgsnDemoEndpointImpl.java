@@ -1,49 +1,63 @@
 package com.socgen.unibank.services.gateway.inbound;
 
 import com.socgen.unibank.platform.models.RequestContext;
-import com.socgen.unibank.services.api.model.DerogatoryConditionDashboardResponse;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestAssignmentRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestCloseRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestCreateRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestResponse;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestReturnRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestSearchCriteria;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestSearchResponse;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestUpdateRequest;
-import com.socgen.unibank.services.api.model.DerogatoryConditionRequestValidationRequest;
+import com.socgen.unibank.services.api.model.DemandeCommentCreateRequest;
+import com.socgen.unibank.services.api.model.DemandeCommentResponse;
+import com.socgen.unibank.services.api.model.DemandeDashboardResponse;
+import com.socgen.unibank.services.api.model.DemandeRequestAssignmentRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestCloseRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestCreateRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestResponse;
+import com.socgen.unibank.services.api.model.DemandeRequestReturnRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestSearchCriteria;
+import com.socgen.unibank.services.api.model.DemandeRequestSearchResponse;
+import com.socgen.unibank.services.api.model.DemandeRequestUpdateRequest;
+import com.socgen.unibank.services.api.model.DemandeRequestValidationRequest;
 import com.socgen.unibank.services.api.model.SgabsHelloWorldRequest;
 import com.socgen.unibank.services.api.model.SgabsHelloWorldResponse;
-import com.socgen.unibank.services.api.usecases.AssignDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.CloseDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.CreateDerogatoryConditionRequestUseCase;
+import com.socgen.unibank.services.api.usecases.AddDemandeCommentUseCase;
+import com.socgen.unibank.services.api.usecases.AssignDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.CloseDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.CreateDemandeRequestUseCase;
 import com.socgen.unibank.services.api.usecases.CreateSgabsHelloWorld;
-import com.socgen.unibank.services.api.usecases.ExportDerogatoryConditionRequestsUseCase;
-import com.socgen.unibank.services.api.usecases.GetDerogatoryConditionDashboardUseCase;
-import com.socgen.unibank.services.api.usecases.ReturnDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.SearchDerogatoryConditionRequestsUseCase;
-import com.socgen.unibank.services.api.usecases.UpdateDerogatoryConditionRequestUseCase;
-import com.socgen.unibank.services.api.usecases.ValidateDerogatoryConditionRequestUseCase;
+import com.socgen.unibank.services.api.usecases.ExportDemandeRequestsUseCase;
+import com.socgen.unibank.services.api.usecases.GetDemandeDashboardUseCase;
+import com.socgen.unibank.services.api.usecases.ListDemandeCommentsUseCase;
+import com.socgen.unibank.services.api.usecases.ReturnDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.SearchDemandeRequestsUseCase;
+import com.socgen.unibank.services.api.usecases.UpdateDemandeRequestUseCase;
+import com.socgen.unibank.services.api.usecases.ValidateDemandeRequestUseCase;
+import com.socgen.unibank.services.core.gateways.outbound.DemandeRequestRepositoryGateway;
+import com.socgen.unibank.services.core.model.DemandeRequest;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequiredArgsConstructor
 public class UnibankServiceSgsnDemoEndpointImpl implements UnibankServiceSgsnDemoEndpoint {
 
     private final CreateSgabsHelloWorld createSgabsHelloWorld;
-    private final CreateDerogatoryConditionRequestUseCase createDerogatoryConditionRequestUseCase;
-    private final UpdateDerogatoryConditionRequestUseCase updateDerogatoryConditionRequestUseCase;
-    private final ValidateDerogatoryConditionRequestUseCase validateDerogatoryConditionRequestUseCase;
-    private final ReturnDerogatoryConditionRequestUseCase returnDerogatoryConditionRequestUseCase;
-    private final AssignDerogatoryConditionRequestUseCase assignDerogatoryConditionRequestUseCase;
-    private final CloseDerogatoryConditionRequestUseCase closeDerogatoryConditionRequestUseCase;
-    private final SearchDerogatoryConditionRequestsUseCase searchDerogatoryConditionRequestsUseCase;
-    private final ExportDerogatoryConditionRequestsUseCase exportDerogatoryConditionRequestsUseCase;
-    private final GetDerogatoryConditionDashboardUseCase getDerogatoryConditionDashboardUseCase;
+    private final CreateDemandeRequestUseCase createDemandeRequestUseCase;
+    private final UpdateDemandeRequestUseCase updateDemandeRequestUseCase;
+    private final ValidateDemandeRequestUseCase validateDemandeRequestUseCase;
+    private final ReturnDemandeRequestUseCase returnDemandeRequestUseCase;
+    private final AssignDemandeRequestUseCase assignDemandeRequestUseCase;
+    private final CloseDemandeRequestUseCase closeDemandeRequestUseCase;
+    private final AddDemandeCommentUseCase addDemandeCommentUseCase;
+    private final ListDemandeCommentsUseCase listDemandeCommentsUseCase;
+    private final SearchDemandeRequestsUseCase searchDemandeRequestsUseCase;
+    private final ExportDemandeRequestsUseCase exportDemandeRequestsUseCase;
+    private final GetDemandeDashboardUseCase getDemandeDashboardUseCase;
+    private final DemandeRequestRepositoryGateway requestRepository;
 
     @Override
     public SgabsHelloWorldResponse handle(SgabsHelloWorldRequest input, RequestContext ctx) {
@@ -51,42 +65,52 @@ public class UnibankServiceSgsnDemoEndpointImpl implements UnibankServiceSgsnDem
     }
 
     @Override
-    public DerogatoryConditionRequestResponse handle(DerogatoryConditionRequestCreateRequest input, RequestContext ctx) {
-        return createDerogatoryConditionRequestUseCase.handle(input, ctx);
+    public DemandeRequestResponse handle(DemandeRequestCreateRequest input, RequestContext ctx) {
+        return createDemandeRequestUseCase.handle(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionRequestResponse handle(DerogatoryConditionRequestUpdateRequest input, RequestContext ctx) {
-        return updateDerogatoryConditionRequestUseCase.handle(input, ctx);
+    public DemandeRequestResponse handle(DemandeRequestUpdateRequest input, RequestContext ctx) {
+        return updateDemandeRequestUseCase.handle(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionRequestResponse handle(DerogatoryConditionRequestValidationRequest input, RequestContext ctx) {
-        return validateDerogatoryConditionRequestUseCase.handle(input, ctx);
+    public DemandeRequestResponse handle(DemandeRequestValidationRequest input, RequestContext ctx) {
+        return validateDemandeRequestUseCase.handle(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionRequestResponse handle(DerogatoryConditionRequestReturnRequest input, RequestContext ctx) {
-        return returnDerogatoryConditionRequestUseCase.handle(input, ctx);
+    public DemandeRequestResponse handle(DemandeRequestReturnRequest input, RequestContext ctx) {
+        return returnDemandeRequestUseCase.handle(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionRequestResponse handle(DerogatoryConditionRequestAssignmentRequest input, RequestContext ctx) {
-        return assignDerogatoryConditionRequestUseCase.handle(input, ctx);
+    public DemandeRequestResponse handle(DemandeRequestAssignmentRequest input, RequestContext ctx) {
+        return assignDemandeRequestUseCase.handle(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionRequestResponse handle(DerogatoryConditionRequestCloseRequest input, RequestContext ctx) {
-        return closeDerogatoryConditionRequestUseCase.handle(input, ctx);
+    public DemandeRequestResponse handle(DemandeRequestCloseRequest input, RequestContext ctx) {
+        return closeDemandeRequestUseCase.handle(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionRequestSearchResponse handle(DerogatoryConditionRequestSearchCriteria input, RequestContext ctx) {
-        return searchDerogatoryConditionRequestsUseCase.handle(input, ctx);
+    public DemandeCommentResponse handle(String requestId, DemandeCommentCreateRequest input, RequestContext ctx) {
+        return addDemandeCommentUseCase.handle(requestId, input, ctx);
     }
 
-    @GetMapping(path = "/derogatory-conditions", produces = "application/json")
-    public DerogatoryConditionRequestSearchResponse list(
+    @Override
+    public List<DemandeCommentResponse> handle(String requestId, RequestContext ctx) {
+        return listDemandeCommentsUseCase.handle(requestId, ctx);
+    }
+
+    @Override
+    public DemandeRequestSearchResponse handle(DemandeRequestSearchCriteria input, RequestContext ctx) {
+        return searchDemandeRequestsUseCase.handle(input, ctx);
+    }
+
+    @GetMapping(path = "/demandes", produces = "application/json")
+    public DemandeRequestSearchResponse list(
         @RequestParam(name = "requestId", required = false) String requestId,
         @RequestParam(name = "customerReference", required = false) String customerReference,
         @RequestParam(name = "requestType", required = false) String requestType,
@@ -98,7 +122,7 @@ public class UnibankServiceSgsnDemoEndpointImpl implements UnibankServiceSgsnDem
         @RequestParam(name = "page", required = false) Integer page,
         @RequestParam(name = "size", required = false) Integer size
     ) {
-        DerogatoryConditionRequestSearchCriteria criteria = new DerogatoryConditionRequestSearchCriteria(
+        DemandeRequestSearchCriteria criteria = new DemandeRequestSearchCriteria(
             requestId,
             customerReference,
             requestType,
@@ -110,16 +134,50 @@ public class UnibankServiceSgsnDemoEndpointImpl implements UnibankServiceSgsnDem
             page,
             size
         );
-        return searchDerogatoryConditionRequestsUseCase.handle(criteria, new RequestContext());
+        return searchDemandeRequestsUseCase.handle(criteria, new RequestContext());
+    }
+
+    @GetMapping(path = "/demandes/{requestId}", produces = "application/json")
+    public DemandeRequestResponse getById(@PathVariable String requestId) {
+        DemandeRequest request = requestRepository.findById(requestId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Unknown request id: " + requestId));
+        return toResponse(request);
+    }
+
+    @DeleteMapping(path = "/demandes/{requestId}")
+    public void deleteById(@PathVariable String requestId) {
+        boolean deleted = requestRepository.deleteById(requestId);
+        if (!deleted) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unknown request id: " + requestId);
+        }
     }
 
     @Override
-    public String export(DerogatoryConditionRequestSearchCriteria input, RequestContext ctx) {
-        return exportDerogatoryConditionRequestsUseCase.export(input, ctx);
+    public String export(DemandeRequestSearchCriteria input, RequestContext ctx) {
+        return exportDemandeRequestsUseCase.export(input, ctx);
     }
 
     @Override
-    public DerogatoryConditionDashboardResponse handle(RequestContext ctx) {
-        return getDerogatoryConditionDashboardUseCase.handle(ctx);
+    public DemandeDashboardResponse handle(RequestContext ctx) {
+        return getDemandeDashboardUseCase.handle(ctx);
+    }
+
+    private DemandeRequestResponse toResponse(DemandeRequest request) {
+        DemandeRequestResponse response = new DemandeRequestResponse();
+        response.setRequestId(request.getRequestId());
+        response.setCustomerReference(request.getCustomerReference());
+        response.setRequestType(request.getRequestType());
+        response.setStatus(request.getStatus() == null ? null : request.getStatus().name());
+        response.setCurrentActor(request.getCurrentActor());
+        response.setMessage(request.getMessage());
+        response.setComment(request.getComment());
+        response.setCreatedAt(request.getCreatedAt());
+        response.setUpdatedAt(request.getUpdatedAt());
+        response.setAttachmentNames(request.getAttachmentNames());
+        response.setHistory(request.getHistory());
+        response.setComments(request.getComments().stream()
+            .map(item -> new DemandeCommentResponse(item.getWorkflowStep(), item.getActor(), item.getComment(), item.getCreatedAt()))
+            .toList());
+        return response;
     }
 }

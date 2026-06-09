@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-demande-request
+      author: copilot
+      changes:
+        - createTable:
+            tableName: demande_request
+            columns:
+              - column:
+                  name: request_id
+                  type: varchar(64)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: customer_reference
+                  type: varchar(128)
+              - column:
+                  name: request_type
+                  type: varchar(128)
+              - column:
+                  name: message
+                  type: varchar(2000)
+              - column:
+                  name: comment
+                  type: varchar(2000)
+              - column:
+                  name: current_actor
+                  type: varchar(128)
+              - column:
+                  name: status
+                  type: varchar(64)
+              - column:
+                  name: created_at
+                  type: datetime
+              - column:
+                  name: updated_at
+                  type: datetime

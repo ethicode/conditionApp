@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-add-workflow-step-to-demande-history
+      author: copilot
+      changes:
+        - addColumn:
+            tableName: demande_request_history
+            columns:
+              - column:
+                  name: workflow_step
+                  type: varchar(64)
+        - sql:
+            sql: UPDATE demande_request_history SET workflow_step = status WHERE workflow_step IS NULL
